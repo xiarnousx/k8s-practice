@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules # bookmark vol to avoid overwriting node_modules
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    command: npm start
+  
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    tty: true
+    environment:
+      - NODE_ENV=development
+    command: npm test

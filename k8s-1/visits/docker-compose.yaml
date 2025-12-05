@@ -1,0 +1,8 @@
+services:
+  visits:
+    build: .
+    ports:
+      - "8081:8081"
+  
+  redis:
+    image: redis
